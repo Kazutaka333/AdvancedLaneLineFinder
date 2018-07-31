@@ -114,7 +114,9 @@ I implemented this pipline on 5th code cell in ./advancedLaneFinding.ipynb.
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
 Here's a link to my video result
+
 [On github](./output_videos/marked_project_video.mp4)
+
 [On youtube](https://youtu.be/7qnh5_HvZZ0)
 
 ---
@@ -123,4 +125,4 @@ Here's a link to my video result
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+In the project video scene where there was big whiter part on the road, detected lane became wobbly, so I tried to smoothen the lane by taking an average over 15 frames. Yet it's not perfect. Also on the challenge video, my pipline failed terribly due to the different color pavement and the color gap was detected by gradient thresholding. This might be prevented by turning off gradient detection completely in the certain case. I imagine that my pipeline is still not pratical on the different whether and lighting condition.
