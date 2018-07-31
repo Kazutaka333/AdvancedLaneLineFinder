@@ -17,13 +17,12 @@ The goals / steps of this project are the following:
 [original]: ./output_images/camera_calib/original.jpg
 [undistorted]: ./output_images/camera_calib/undistorted.jpg "Undistorted"
 [test_original]: ./test_images/test2.jpg
-[image2]: ./output_images/undist/test2.jpg "Road Transformed"
+[test_undistorted]: ./output_images/undist/test2.jpg "Road Transformed"
 [image3]: ./output_images/sobel_s_channel/test2.jpg "Binary Example"
 [before_warp]: ./output_images/sobel_s_channel/straight_lines2.jpg
 [warped]: ./output_images/threshold_warped/straight_lines2.jpg
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[lane_pixel]: ./output_images/lane_pixel/test2.jpg
+[marked_lane]: ./output_images/marked_lane/test2.jpg
 [video1]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -56,7 +55,7 @@ Here's one example.
 original
 ![][test_original]
 undistorted
-![alt text][image2]
+![alt text][test_undistorted]
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
@@ -90,19 +89,23 @@ warped
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-To find lane pixel, I used sliding window technique. As a starting point, I calculate the histogram of the bottom half of the image to identify each peak in left half and right half of the image as the points where lanes start. Then I search for lane pixels in the rectanglar area around the starting points. If sufficient amount of pixels are found, I take its mean and adjust next starting point. I keep repeating this step until I reach the top of the image. With the pixel found through this process, I can call fit_polynomial() (3rd code cell, line 123-132, ./advancedLaneFinding.ipynb) Here's one of the results
+To find lane pixel, I used sliding window technique. As a starting point, I calculate the histogram of the bottom half of the image to identify each peak in left half and right half of the image as the points where lanes start. Then I search for lane pixels in the rectanglar area around the starting points. If sufficient amount of pixels are found, I take its mean and adjust next starting point. I keep repeating this step until I reach the top of the image and encapsulate this into a function called find_lane_pixels() (3rd code cell, line 36-95, ./advancedLaneFinding.ipynb). With the pixel found through this process, I can call fit_polynomial() (3rd code cell, line 123-132, ./advancedLaneFinding.ipynb).
+Here's one of the results
 
-![alt text][image5]
+![alt text][lane_pixel]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+I calculate the radius of curvature with the formula given in the lesson in terms of meter (3rd code cell, line 149-156, ./advancedLaneFinding.ipynb).
+I calculate the position of vehicle by calculating the difference between the center pixel in the image and the center of the two lanes (3rd code cell, line 160-163, ./advancedLaneFinding.ipynb).
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+I implemented this pipline on 5th code cell in ./advancedLaneFinding.ipynb.
 
-![alt text][image6]
+\* positive value of position means the vehicle is shifted to the right and negative value means it's shifted to the left.
+
+![alt text][marked_lane]
 
 ---
 
@@ -110,7 +113,7 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./output_videos/marked_project_video.mp4)
 
 ---
 
