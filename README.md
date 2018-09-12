@@ -28,4 +28,4 @@ How to Run the Program
 
 Click on the file called "P1.ipynb".  Another browser window will appear displaying the notebook.  
 
-Please check [writeup.md](https://github.com/Kazutaka333/AdvancedLaneLineFinder/blob/master/writeup.md) for detailed explanation on how this code works.
+*Please check [writeup.md](https://github.com/Kazutaka333/AdvancedLaneLineFinder/blob/master/writeup.md) for detailed explanation on how this code works.*
