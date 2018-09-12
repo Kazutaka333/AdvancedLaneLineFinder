@@ -1,5 +1,8 @@
 ## Advanced Lane Finding
 
+[marked_lane]: ./output_images/marked_lane/test2.jpg
+![][marked_lane]
+
 Overview
 ---
 
